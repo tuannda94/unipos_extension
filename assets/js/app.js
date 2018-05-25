@@ -11,39 +11,39 @@ let currentUserId = undefined;
 let isLoading = false;
 
 let callback = async (mutationsList) => {
-	let urlParams = window.location.href.replace(env.BASE_URL, '').split("?")[1];
-	let newUserId = undefined;
-	if (urlParams != undefined && urlParams.indexOf('i=') != -1) {
-		newUserId = urlParams.split("=")[1];
-	} else {
-		$('.wrapper').css("display", "none");
-	}
+    let urlParams = window.location.href.replace(env.BASE_URL, '').split("?")[1];
+    let newUserId = undefined;
+    if (urlParams != undefined && urlParams.indexOf('i=') != -1) {
+        newUserId = urlParams.split("=")[1];
+    } else {
+        $('.wrapper').css("display", "none");
+    }
 
-	if (!isLoading) {
-		if ((currentUserId == undefined && newUserId != undefined) || currentUserId != newUserId) {
-			isLoading = true;
+    if (!isLoading) {
+        if ((currentUserId == undefined && newUserId != undefined) || currentUserId != newUserId) {
+            isLoading = true;
 
-			let route = controllers.default.routeMatchingController.dispatch();
-			if (!$.isEmptyObject(route)) {
-				if ($('.wrapper').length) {
-					await $('.wrapper').css("display", "none");
-				}
-				let action = route.action;
-				let controller = route.controller.substring(route.controller.lastIndexOf('/') + 1);
-				controller = controller.charAt(0).toLowerCase() + controller.slice(1);
-				await controllers.default[controller][action]();
-			}
+            let route = controllers.default.routeMatchingController.dispatch();
+            if (!$.isEmptyObject(route)) {
+                if ($('.wrapper').length) {
+                    await $('.wrapper').css("display", "none");
+                }
+                let action = route.action;
+                let controller = route.controller.substring(route.controller.lastIndexOf('/') + 1);
+                controller = controller.charAt(0).toLowerCase() + controller.slice(1);
+                await controllers.default[controller][action]();
+            }
 
-			currentUserId = newUserId;
-			isLoading = false;
-		}
-	}
+            currentUserId = newUserId;
+            isLoading = false;
+        }
+    }
 
 };
 
 let config = {
-	childList: true,
-	subtree: true
+    childList: true,
+    subtree: true
 };
 
 var observer = new MutationObserver(callback);
