@@ -13,8 +13,10 @@ let isLoading = false;
 let callback = async (mutationsList) => {
 	let urlParams = window.location.href.replace(env.BASE_URL, '').split("?")[1];
 	let newUserId = undefined;
-	if (urlParams.indexOf('i=') != -1) {
+	if (urlParams != undefined && urlParams.indexOf('i=') != -1) {
 		newUserId = urlParams.split("=")[1];
+	} else {
+		$('.wrapper').css("display", "none");
 	}
 
 	if (!isLoading) {

@@ -1,5 +1,6 @@
 import UnipostRequestHandler from 'frameworkDir/Http/Requests/UnipostRequestHandler.js';
 import env from 'codebaseDir/env.js';
+import { unipos } from 'codebaseDir/config/unipos.js';
 
 class ProfileController
 {
@@ -19,7 +20,6 @@ class ProfileController
 				this.requestHandler.profile()
 			])
 			.then(value => {
-				console.log(value);
 				let totalReceivedPoint = 0;
 				let totalSentPoint = 0;
 				let totalClappedPoint = 0;
@@ -80,7 +80,7 @@ class ProfileController
 								<label>Groups</label>
 							</div>
 							<div class="default-label">
-								<label>${groups.name}</label>
+								<label>${groups.name != undefined ? groups.name : ''}</label>
 							</div>
 						</div>
 					</div>
