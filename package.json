@@ -1,0 +1,29 @@
+{
+  "name": "unipost_ext",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "npm run development",
+    "development": "webpack --config webpack.config.js",
+    "watch": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --watch --progress --hide-modules --config=webpack.config.js"
+  },
+  "author": "Nguyen Hoang Tien <tiennguyenhoang339@gmail.com>",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "babel-loader": "^7.1.4",
+    "cross-env": "^5.1.6",
+    "css-loader": "^0.28.11",
+    "jquery": "^3.3.1",
+    "mutation-observer": "^1.0.3",
+    "style-loader": "^0.21.0"
+  },
+  "devDependencies": {
+    "extract-text-webpack-plugin": "^3.0.2",
+    "webpack": "^4.8.3",
+    "webpack-cli": "^2.1.4",
+    "webpack-config": "^7.5.0"
+  }
+}

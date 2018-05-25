@@ -1,0 +1,78 @@
+.wrapper {
+  position: absolute;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  right: 2%;
+  top: 15%;
+  width: 15%;
+  overflow: hidden;
+  border-style: solid;
+  border-width: 2px;
+  border-radius: 20px;
+  float: right;
+  box-sizing: border-box;
+}
+
+.default-label {
+  line-height: 130%;
+  width: 100%;
+  display: inline-table;
+}
+
+.default-title {
+  line-height: 130%;
+  width: 50%;
+  display: inline-table;
+  font-size: 110%;
+  font-weight: bold;
+}
+
+.partial {
+  line-height: 150%;
+  font-size: 17px;
+}
+
+.box {
+  width: 100%;
+  margin-top: 10%;
+  margin-bottom: 10%;
+}
+
+.header-avatar {
+  margin-top: 20px;
+}
+
+.header-profile-detail {
+  margin-top: 20px;
+}
+
+.tbox-left {
+  text-align: center;
+  width: 50%;
+}
+
+.tbox-right {
+  text-align: center;
+  width: 50%;
+}
+
+.headers {
+  width: 100%;
+  text-align: center;
+  background-image: linear-gradient(
+    rgba(255, 255, 255, 0),
+    rgba(255, 255, 255, 0)
+  ),
+  linear-gradient(to right, #8bdde1, #b5f5c1);
+  padding-top: 10px;
+  padding-bottom: 10px;
+  line-height: 135%;
+}
+
+table {
+  overflow: hidden;
+}
+
+td {
+  text-align: center;
+}
