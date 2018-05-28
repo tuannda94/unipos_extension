@@ -2,9 +2,10 @@ import env from 'codebaseDir/env.js';
 
 class UnipostRequestHandler
 {
-    constructor() {
+    constructor(data) {
         this.baseUrl = env.BASE_URL;
         this.apiUrl = env.API_URL;
+        this.maxRequestResult = data.maxRequestResult;
         this.eventBinding();
     }
 
@@ -69,7 +70,7 @@ class UnipostRequestHandler
     getRequestData(memberId, type = "received", offset = "", method = "GetCards2") {
         let params = {
             "offset_card_id": offset,
-            "count": 20000,
+            "count": this.maxRequestResult,
         };
         switch(type) {
             case "received":
