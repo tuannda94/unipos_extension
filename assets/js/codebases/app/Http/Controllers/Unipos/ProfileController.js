@@ -132,7 +132,7 @@ class ProfileController
                 <table class="box">
                     <tbody>
                         <tr class="partial">
-                            <td class="tbox-left">Received Point</td>
+                            <td class="tbox-left">Point Received</td>
                             <td class="tbox-right">${this.totalReceivedPoint}</td>
                         </tr>
                         <tr class="partial">
