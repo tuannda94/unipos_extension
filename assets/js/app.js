@@ -31,7 +31,7 @@ chrome.runtime.onMessage.addListener((params) => {
             // Chatwork
             setTimeout(() => {
                 let uniposIcon = "<li><img id=\"unipos-icon\" class=\"unipos-icon\" src=\"https://unipos.me/img/favicon.ico\"/></li>";
-                if ($("unipos-icon").length === 0) {
+                if ($("#unipos-icon").length === 0) {
                     $("#_chatSendTool").append(uniposIcon);
                 }
                 $("#_wrapper").append(html);
