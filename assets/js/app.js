@@ -5,47 +5,40 @@ import css from 'sourceDir/css/app.css';
 import env from 'codebaseDir/env.js';
 import * as controllers from 'codebaseDir/app/Http/Controllers/ControllerResolver.js';
 
-var MutationObserver = require('mutation-observer');
+let html = require('codebaseDir/views/cw/main.html');
 
-let currentUserId = undefined;
-let isLoading = false;
-
-let callback = async (mutationsList) => {
-    let urlParams = window.location.href.replace(env.BASE_URL, '').split("?")[1];
-    let newUserId = undefined;
-    if (urlParams != undefined && urlParams.indexOf('i=') != -1) {
-        newUserId = urlParams.split("=")[1];
-    } else {
-        $('.wrapper').css("display", "none");
-    }
-
-    if (!isLoading) {
-        if ((currentUserId == undefined && newUserId != undefined) || currentUserId != newUserId) {
-            isLoading = true;
-
-            let route = controllers.default.routeMatchingController.dispatch();
-            if (!$.isEmptyObject(route)) {
-                if ($('.wrapper').length) {
-                    await $('.wrapper').css("display", "none");
+chrome.runtime.onMessage.addListener((params) => {
+    if (params.message === 'onPageLoad') {
+        if (window.location.href.indexOf(env.BASE_URL) != -1) {
+            // Unipos
+            let urlParams = window.location.href.replace(env.BASE_URL, '').split("?")[1];
+            if (urlParams !== null && urlParams !== undefined) {
+                let currentUserId = urlParams.split("=")[1];
+                let route = controllers.default.routeMatchingController.dispatch();
+                if (!$.isEmptyObject(route)) {
+                    if ($('.unipos-wrapper').length) {
+                        $('.unipos-wrapper').css("display", "none");
+                    }
+                    let action = route.action;
+                    let controller = route.controller.substring(route.controller.lastIndexOf('/') + 1);
+                    controller = controller.charAt(0).toLowerCase() + controller.slice(1);
+                    controllers.default[controller][action]();
                 }
-                let action = route.action;
-                let controller = route.controller.substring(route.controller.lastIndexOf('/') + 1);
-                controller = controller.charAt(0).toLowerCase() + controller.slice(1);
-                await controllers.default[controller][action]();
             }
-
-            currentUserId = newUserId;
-            isLoading = false;
+        }
+    } else if (params.message === 'onCWPageLoad') {
+        if (window.location.href.indexOf(env.CW_URL) != -1) {
+            // Chatwork
+            setTimeout(() => {
+                let uniposIcon = "<li><img id=\"unipos-icon\" class=\"unipos-icon\" src=\"https://unipos.me/img/favicon.ico\"/></li>";
+                if ($("unipos-icon").length === 0) {
+                    $("#_chatSendTool").append(uniposIcon);
+                }
+                $("#_wrapper").append(html);
+                controllers.default["cwPostController"]["eventBinding"]();
+            }, 3000);
         }
     }
+});
 
-};
-
-let config = {
-    childList: true,
-    subtree: true
-};
-
-var observer = new MutationObserver(callback);
-
-observer.observe(document.getElementById('js_body'), config);
+chrome.runtime.sendMessage({ message: "onPageLoad" });
