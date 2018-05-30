@@ -1,12 +1,12 @@
-import UnipostRequestHandler from 'frameworkDir/Http/Requests/UnipostRequestHandler.js';
 import env from 'codebaseDir/env.js';
 import { unipos } from 'codebaseDir/config/unipos.js';
+let html = require('codebaseDir/views/app.html');
 
 class ProfileController
 {
     constructor(data) {
         this.maxRequestResult = unipos.max_request_result;
-        this.requestHandler = data.unipostRequestHandler;
+        this.requestHandler = data.uniposProfileRequestHandler;
         this.receivedCards = [];
         this.sentCards = [];
         this.clappedCards = [];
@@ -14,10 +14,11 @@ class ProfileController
         this.totalSentPoint = 0;
         this.totalClappedPoint = 0;
         this.userProfile = {};
+        this.template = html;
     }
 
     async profile() {
-        this.clearData();
+        await this.clearData();
         let allLoaded = false;
         while (!allLoaded) {
             let requests = [];
@@ -82,7 +83,7 @@ class ProfileController
             this.totalReceivedPoint = totalReceivedPoint;
             this.totalSentPoint = totalSentPoint;
             this.totalClappedPoint = totalClappedPoint;
-            this.display();
+            await this.display();
         }
     }
 
@@ -96,61 +97,19 @@ class ProfileController
 
     display() {
         let groups = this.userProfile.groups[0] || '';
-        let template = `
-            <div class="wrapper">
-                <div class="headers">
-                    <div class="header-avatar">
-                        <img src=${this.userProfile.member.picture_url} class="involvingMember_picture"/>
-                    </div>
-                    <div class="header-profile-detail">
-                        <div>
-                            <div class="default-title">
-                                <label>Name</label>
-                            </div>
-                            <div class="default-label">
-                                <label>${this.userProfile.member.display_name}</label>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="default-title">
-                                <label>E-mail</label>
-                            </div>
-                            <div class="default-label">
-                                <label>${this.userProfile.member.email_address}</label>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="default-title">
-                                <label>Groups</label>
-                            </div>
-                            <div class="default-label">
-                                <label>${groups.name != undefined ? groups.name : ''}</label>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <table class="box">
-                    <tbody>
-                        <tr class="partial">
-                            <td class="tbox-left">Received Point</td>
-                            <td class="tbox-right">${this.totalReceivedPoint}</td>
-                        </tr>
-                        <tr class="partial">
-                            <td class="tbox-left">Point Sent</td>
-                            <td class="tbox-right">${this.totalSentPoint}</td>
-                        </tr>
-                        <tr class="partial">
-                            <td class="tbox-left">Post Clapped</td>
-                            <td class="tbox-right">${this.totalClappedPoint}</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        `;
+        let template = this.template;
+
+        template = template.replace("{user_avatar}", this.userProfile.member.picture_url);
+        template = template.replace("{userName}", this.userProfile.member.display_name);
+        template = template.replace("{email}", this.userProfile.member.email_address);
+        template = template.replace("{groupName}", groups.name != undefined ? groups.name : '');
+        template = template.replace("{totalReceivedPoint}", this.totalReceivedPoint);
+        template = template.replace("{totalSentPoint}", this.totalSentPoint);
+        template = template.replace("{totalClappedPoint}", this.totalClappedPoint);
 
         let itv = setInterval(() => {
-            if ($('.wrapper').length) {
-                $('.wrapper').remove();
+            if ($('.unipos-wrapper').length) {
+                $('.unipos-wrapper').remove();
             }
             if ($('#js_body').length) {
                 if ($('#js_body').length) {
@@ -169,6 +128,7 @@ class ProfileController
         this.totalSentPoint = 0;
         this.totalClappedPoint = 0;
         this.userProfile = {};
+        this.template = html;
     }
 }
 

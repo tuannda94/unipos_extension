@@ -1,34 +1,13 @@
 import env from 'codebaseDir/env.js';
+import { BaseRequest } from 'frameworkDir/Http/Requests/BaseRequest.js';
 
-class UnipostRequestHandler
+class UniposProfileRequestHandler extends BaseRequest
 {
     constructor(data) {
+        super();
         this.baseUrl = env.BASE_URL;
         this.apiUrl = env.API_URL;
         this.maxRequestResult = data.maxRequestResult;
-        this.eventBinding();
-    }
-
-    eventBinding() {
-        //
-    }
-
-    makeRequest(data, token, unipos = false, method = 'POST') {
-        return new Promise((resolve, reject) => {
-            axios({
-                "url": this.apiUrl,
-                "method": method,
-                "headers": {
-                    "Content-Type": "application/json",
-                    "x-unipos-token": token,
-                },
-                data: JSON.stringify(data),
-            }).then(response => {
-                resolve(response.data.result);
-            }).catch(error => {
-                reject(error)
-            });
-        });
     }
 
     async received(offset = "") {
@@ -67,6 +46,15 @@ class UnipostRequestHandler
         return await this.makeRequest(data, token, true);
     }
 
+    async suggestion(term, limit = 100) {
+        let params = window.location.href.replace(this.baseUrl, '').split('?');
+        let token = localStorage.getItem('authnToken');
+        let memberId = params[1].substring(params[1].indexOf("=") + 1);
+        let data = this.getRequestData(memberId, "suggestion", "", "FindSuggestMembers");
+
+        return await this.makeRequest(data, token, true);
+    }
+
     getRequestData(memberId, type = "received", offset = "", method = "GetCards2") {
         let params = {
             "offset_card_id": offset,
@@ -87,6 +75,11 @@ class UnipostRequestHandler
                 delete params.offset_card_id;
                 delete params.count;
                 break;
+            case "suggestion":
+                params.limit = memberId;
+                delete params.offset_card_id;
+                delete params.count;
+                break;
             default:
                 //
         }
@@ -100,4 +93,4 @@ class UnipostRequestHandler
     }
 }
 
-export default UnipostRequestHandler;
+export default UniposProfileRequestHandler;
