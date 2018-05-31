@@ -4,6 +4,7 @@ let env = {
     CW_URL:    	"https://www.chatwork.com",
     BASE_URL_MATCH_QUERY:   /https:\/\/unipos.me\/.*?i=(.*)/,
     CW_URL_MATCH_QUERY:   /https:\/\/www.chatwork.com\/.*/,
+    SEND_API: "https://unipos.me/c/jsonrpc",
 };
 
 export default env;

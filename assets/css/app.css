@@ -136,3 +136,54 @@ td {
 .ml-10 {
   margin-left: 10px;
 }
+
+.align-top {
+  vertical-align: top;
+}
+
+.modal-body-left {
+  width: 35%;
+  border-right: 1px solid;
+}
+
+.modal-body-right {
+  width: 55%;
+  margin-left: 2%;
+}
+
+.core-value-wrapper {
+  width: 48%;
+  display: inline-block;
+}
+
+.mt-20 {
+  margin-top: 20px;
+}
+
+.pl-0 {
+  padding-left: 0px;
+}
+
+.padding-0 {
+  padding: 0px !important;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.inactive {
+  color: grey;
+}
+
+.active {
+  color: green;
+}
+
+.inline {
+  display: inline !important;
+}
+
+.clickable {
+  cursor: pointer;
+}

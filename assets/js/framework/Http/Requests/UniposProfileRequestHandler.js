@@ -46,15 +46,6 @@ class UniposProfileRequestHandler extends BaseRequest
         return await this.makeRequest(data, token, true);
     }
 
-    async suggestion(term, limit = 100) {
-        let params = window.location.href.replace(this.baseUrl, '').split('?');
-        let token = localStorage.getItem('authnToken');
-        let memberId = params[1].substring(params[1].indexOf("=") + 1);
-        let data = this.getRequestData(memberId, "suggestion", "", "FindSuggestMembers");
-
-        return await this.makeRequest(data, token, true);
-    }
-
     getRequestData(memberId, type = "received", offset = "", method = "GetCards2") {
         let params = {
             "offset_card_id": offset,
@@ -72,11 +63,6 @@ class UniposProfileRequestHandler extends BaseRequest
                 break;
             case "profile":
                 params.member_id = memberId;
-                delete params.offset_card_id;
-                delete params.count;
-                break;
-            case "suggestion":
-                params.limit = memberId;
                 delete params.offset_card_id;
                 delete params.count;
                 break;

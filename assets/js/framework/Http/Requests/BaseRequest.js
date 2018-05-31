@@ -4,10 +4,14 @@ class BaseRequest
 		//
     }
 
-	makeRequest(data, token, unipos = false, method = 'POST') {
+	makeRequest(data, token, unipos = false, method = 'POST', api = "") {
+        if (api.length === 0) {
+            api = this.apiUrl;
+        }
+
         return new Promise((resolve, reject) => {
             axios({
-                "url": this.apiUrl,
+                "url": api,
                 "method": method,
                 "headers": {
                     "Content-Type": "application/json",

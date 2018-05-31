@@ -13,7 +13,6 @@ chrome.tabs.onUpdated.addListener(function () {
                 chrome.tabs.sendMessage(tabs[0].id, { message: "onPageLoad", id: matches[1]});
             } else if (url.match(env.CW_URL_MATCH_QUERY)) {
                 matches = url.match(env.CW_URL_MATCH_QUERY);
-                console.log(matches);
                 chrome.tabs.sendMessage(tabs[0].id, { message: "onCWPageLoad", id: matches});
             }
         }
@@ -30,7 +29,6 @@ chrome.runtime.onMessage.addListener(function (params) {
                 chrome.tabs.sendMessage(tabs[0].id, { message: "onPageLoad", id: matches[1] });
             } else if (url.match(env.CW_URL_MATCH_QUERY)) {
                 matches = url.match(env.CW_URL_MATCH_QUERY);
-                console.log(matches);
                 chrome.tabs.sendMessage(tabs[0].id, { message: "onCWPageLoad", id: matches});
             }
         })
