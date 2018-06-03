@@ -6,34 +6,44 @@
           	<button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
         <div class="modal-body">
-          	<div>
-	            <div class="modal-body-left inline-block">
-	            	<div class="form-group">
-		              	<div>
-						    <label class="col-md-1 padding-0 text-right inactive">@</label>
-		              		<label class="col-md-3 pl-0"><b>Member</b></label>
-						</div>
-						<input type="text" class="form-control col-md-11 unipos_input" id="unipos_member_name" placeholder="nguyen.van.a">
-		            </div>
-		            <div class="form-group">
-		              	<div>
-						    <label class="col-md-1 padding-0 text-right inactive">+</label>
-		              		<label class="col-md-3 pl-0"><b>Point</b></label>
-						</div>
-		              	<input type="number" class="form-control col-md-11 unipos_input" id="unipos_point_sending" placeholder="50"  min="0" step="1">
-		            </div>
-	            </div>
-	            <div class="modal-body-right inline-block align-top">
+          	<div class="modal-body-left">
+                <div class="modal-body-left-message">
+                    <label class="title"><b>Message</b></label>
+                    <textarea class="unipos_input" rows="3" id="unipos-message" style="height: 0%"></textarea>
+                </div>
+                <div class="modal-body-left-to-member">
+                    <div class="member">
+                        <div class="img">
+                            <img src="https://unipos.me/q/image/default" id="member-picture-url" class="picture-url" />
+                        </div>
+                        <span id="member-display-name">John</span>
+                        <button id="btn-send" type="button" class="btn btn-outline-success disabled send-member">
+                            <span class="glyphicon glyphicons-direction"></span> Send
+                        </button>
+                    </div>
+                    <div class="action">
+                        <button value="@">@</button>
+                        <button value="+">+</button>
+                        <button value="#">#</button>
+                    </div>
+                    <div class="suggest hidden">
+                        <div class="suggest-title">Member</div>
+                        <div id="member-suggestion">
+                        </div>
+                    </div>
+                </div>
+            </div>
+	        <div class="modal-body-right">
+                <div class="inl ine-block align-top">
 	              	<div>
-					    <label class="col-md-1 padding-0 text-right inactive">#</label>
-		            	<label class="col-md-8 pl-0"><b>Hashtags</b></label>
+		            	<label class="col-md-8 pl-0 title"><b>Hashtags</b></label>
 					</div>
 	            	<div class="checkbox core-value-wrapper">
 				      	<label>
 						    <button id="core_value_1">
 						    	<span class="inline clickable">+</span>
 						    </button>
-	            			1.AppreciateTeamwork
+	            			<span>1.AppreciateTeamwork</span>
 				      	</label>
 				    </div>
 	            	<div class="checkbox core-value-wrapper">
@@ -41,7 +51,7 @@
 						    <button id="core_value_2">
 						    	<span class="inline clickable">+</span>
 						    </button>
-	            			2.ThinkOutsideTheBox
+	            			<span>2.ThinkOutsideTheBox</span>
 				      	</label>
 				    </div>
 	            	<div class="checkbox core-value-wrapper">
@@ -49,7 +59,7 @@
 						    <button id="core_value_3">
 						    	<span class="inline clickable">+</span>
 						    </button>
-	            			3.HaveTheGutsToChallenge
+	            			<span>3.HaveTheGutsToChallenge</span>
 				      	</label>
 				    </div>
 	            	<div class="checkbox core-value-wrapper">
@@ -57,7 +67,7 @@
 						    <button id="core_value_4">
 						    	<span class="inline clickable">+</span>
 						    </button>
-	            			4.ThinkPositive
+	            			<span>4.ThinkPositive</span>
 				      	</label>
 				    </div>
 	            	<div class="checkbox core-value-wrapper">
@@ -65,7 +75,7 @@
 						    <button id="core_value_5">
 						    	<span class="inline clickable">+</span>
 						    </button>
-	            			5.SpeedUp
+	            			<span>5.SpeedUp</span>
 				      	</label>
 				    </div>
 	            	<div class="checkbox core-value-wrapper">
@@ -73,7 +83,7 @@
 						    <button id="core_value_6">
 						    	<span class="inline clickable">+</span>
 						    </button>
-	            			6.BeProfessional
+	            			<span>6.BeProfessional</span>
 				      	</label>
 				    </div>
 	            	<div class="checkbox core-value-wrapper">
@@ -81,20 +91,11 @@
 						    <button id="core_value_7">
 						    	<span class="inline clickable">+</span>
 						    </button>
-	            			7.FocusOnThePoint
+	            			<span>7.FocusOnThePoint</span>
 				      	</label>
 				    </div>
 	            </div>
           	</div>
-          	<div class="mt-20">
-          		<label class="col-md-3"><b>Message</b></label>
-          		<textarea class="form-control col-md-11 unipos_input" rows="3" id="unipos-message" style="height: 0%"></textarea>
-          	</div>
-        </div>
-        <div class="modal-footer">
-        	<button id="btn-send" type="button" class="btn btn-outline-success disabled">
-          		<span class="glyphicon glyphicons-direction"></span> Send
-        	</button>
         </div>
       </div>
   </div>

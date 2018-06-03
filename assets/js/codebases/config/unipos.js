@@ -9,6 +9,8 @@ let unipos = {
 		"6.BeProfessional",
 		"7.FocusOnThePoint",
 	],
+	'default_picture_url': 'https://unipos.me/q/image/default',
+	'default_display_name': 'John',
 }
 
 export { unipos };
