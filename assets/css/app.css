@@ -6,12 +6,15 @@
   top: 15%;
   width: 15%;
   overflow: hidden;
-  border-style: solid;
-  border-width: 2px;
-  border-radius: 20px;
+  border: solid 1px #dde2e2;
+  border-radius: 10px;
   float: right;
   box-sizing: border-box;
-  background: #fff;
+  background-image: linear-gradient(
+  rgba(255, 255, 255, 0),
+  rgba(255, 255, 255, 0)
+  ),
+  linear-gradient(to right, #8bdde1, #b5f5c1);
 }
 
 .unipos-modal-wrapper {
@@ -34,6 +37,15 @@
   line-height: 130%;
   width: 100%;
   display: inline-table;
+  font-weight: 600;
+  font-size: 16px;
+  color: #4a4a4a;
+  padding-bottom: 5px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  width: 100%;
+  display: block;
 }
 
 .default-title {
@@ -42,50 +54,91 @@
   display: inline-table;
   font-size: 110%;
   font-weight: bold;
+  font-weight: 400;
+  font-size: 14px;
+  color: #808080;
 }
 
 .partial {
-  line-height: 150%;
+  line-height: 30px;
+  height: 35px;
   font-size: 17px;
 }
 
 .box {
   width: 100%;
-  margin-top: 10%;
-  margin-bottom: 10%;
-}
-
-.header-avatar {
-  margin-top: 20px;
+  background-color: #FFF;
 }
 
 .header-profile-detail {
-  margin-top: 20px;
+  margin: 15px 0;
 }
 
 .tbox-left {
-  text-align: center;
+  text-align: right;
   width: 50%;
 }
 
 .tbox-right {
-  text-align: center;
+  text-align: left;
+  padding-left: 20px;
   width: 50%;
+}
+
+.header-avatar {
+    margin-top: 15px;
 }
 
 .headers {
   width: 100%;
   text-align: center;
-  background-image: #fff;
   line-height: 135%;
 }
 
 .headers label {
   font-family: 'Montserrat', sans-serif;
-  font-weight: 600;
-  font-size: 16px;
-  color: #808080;
+
   margin: 0 !important;
+}
+
+@media (max-width: 1555px) {
+    .partial {
+      font-size: 15px;
+    }
+}
+
+@media (max-width: 1366px) {
+    .unipos-wrapper {
+        width: 7%;
+    }
+
+
+    .default-label {
+      font-size: 12px;
+
+    }
+
+    .default-title {
+      display: none;
+    }
+
+    .tbox-left {
+        display: none;
+    }
+
+    .tbox-right {
+        text-align: center;
+        padding: 0;
+    }
+
+    .tbox-right-received {
+        color: #FF7679;
+
+    }
+
+    .tbox-right-send {
+        color: #47C9DE;
+    }
 }
 
 table {
@@ -315,6 +368,7 @@ td {
     font-weight: 400;
     font-size: 12px;
     color: #808080;
+    cursor: pointer;
 }
 
 .mt-20 {
